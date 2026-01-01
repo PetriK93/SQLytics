@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-container);
+    padding: 15px;
+    width: 28vw;
+    min-width: 180px;
+    height: 100%;
+    min-height: 100%;
+    text-align: center;
+}
+
+.horizontalWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    width: 80%;
+}
+
+.hamburgerMenu {
+    width: 23px;
+    height: 23px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.hamburgerMenu:hover {
+    background: var(--color-hover);
+}
+
+.profilePicture {
+    width: 100px;
+    height: auto;
+}
+
+.profileName {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sectionWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

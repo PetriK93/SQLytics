@@ -1,0 +1,29 @@
+:root {
+    /*Base colors */
+    --color-bg: #131927;
+    --color-container: #1a2436;
+    --color-text: #d7dbe2;
+    --color-secondary-text: #3faf95;
+    --color-sub-text: #a4a4a5;
+    --color-highlight-text: #262d56;
+    --color-button: #363a89;
+    --color-secondary-button: #43c4a2;
+    --color-hover: #838383;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: "Roboto Condensed", sans-serif;
+}
+
