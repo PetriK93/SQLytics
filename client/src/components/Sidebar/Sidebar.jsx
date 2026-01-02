@@ -11,47 +11,29 @@ import calendarIcon from "../../assets/calendar_dark_mode.png";
 import helpIcon from "../../assets/faq_dark_mode.png";
 
 function Sidebar() {
-    return (
+  return (
     <div className={styles.container}>
-        <div className={styles.horizontalWrapper}>
-            <p>Admin</p>
-            <img src={hamburgerMenuDark} className={styles.hamburgerMenu}></img>
-        </div>
-        <img src={profilePicture} className={styles.profilePicture} />
-        <p className={styles.profileName}>Petri Korpikoski</p>
-        <div className={styles.sectionWrapper}>
-        <SidebarSection 
-        img={dashboardIcon}
-        description="Dashboard"
+      <div className={styles.horizontalWrapper}>
+        <p>Admin</p>
+        <img src={hamburgerMenuDark} className={styles.hamburgerMenu}></img>
+      </div>
+      <img src={profilePicture} className={styles.profilePicture} />
+      <p className={styles.profileName}>Petri Korpikoski</p>
+      <div className={styles.sectionWrapper}>
+        <SidebarSection img={dashboardIcon} description="Dashboard" />
+        <SidebarSection name="Data" img={teamIcon} description="Manage Team" />
+        <SidebarSection img={contactsIcon} description="Contacts" />
+        <SidebarSection img={invoicesIcon} description="Invoices" />
+        <SidebarSection
+          name="User Tools"
+          img={addProfileIcon}
+          description="Add New Profile"
         />
-        <SidebarSection 
-        name="Data"
-        img={teamIcon}
-        description="Manage Team"
-        />
-        <SidebarSection 
-        img={contactsIcon}
-        description="Contacts"
-        />
-        <SidebarSection 
-        img={invoicesIcon}
-        description="Invoices"
-        />
-        <SidebarSection 
-        name="User Tools"
-        img={addProfileIcon}
-        description="Add New Profile"
-        />
-        <SidebarSection 
-        img={calendarIcon}
-        description="Calendar"
-        />
-        <SidebarSection 
-        img={helpIcon}
-        description="Help"
-        />
-        </div>
+        <SidebarSection img={calendarIcon} description="Calendar" />
+        <SidebarSection img={helpIcon} description="Help" />
+      </div>
     </div>
-)}
+  );
+}
 
 export default Sidebar;

@@ -1,6 +1,18 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    background-color: var(--color-bg);
-    color: var(--color-text);
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  gap: 1.2vw;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2vw;
 }
