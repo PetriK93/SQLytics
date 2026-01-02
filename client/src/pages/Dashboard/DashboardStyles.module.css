@@ -10,6 +10,7 @@
   flex-direction: column;
   width: auto;
   padding: 1.2vw;
+  gap: 1.2vw;
 }
 
 .horizontalWrapper {

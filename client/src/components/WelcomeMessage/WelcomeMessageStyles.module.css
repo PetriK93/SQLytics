@@ -12,7 +12,7 @@
 .verticalWrapperLeft {
   display: flex;
   flex-direction: column;
-  margin-top: 65px;
+  margin-top: 15px;
 }
 
 .mainText {
@@ -47,7 +47,8 @@
   width: 250px;
   height: 40px;
   cursor: pointer;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-bottom: -25px;
   border-radius: 5px;
 }
 

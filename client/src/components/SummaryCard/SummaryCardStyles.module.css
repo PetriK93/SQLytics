@@ -1,10 +1,9 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 50%;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px 0 15px 0;
+  padding: 20px;
   background-color: var(--color-container);
   width: 20vw;
 }
