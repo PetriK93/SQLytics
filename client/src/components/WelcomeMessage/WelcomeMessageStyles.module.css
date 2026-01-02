@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   width: 100%;
   height: auto;
 }
@@ -64,13 +66,13 @@
 .horizontalWrapperRight {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 15px;
   justify-content: flex-end;
 }
 
 .icon {
-  width: 23px;
-  height: 23px;
+  width: 26px;
+  height: 26px;
   cursor: pointer;
 }
 

@@ -3,12 +3,13 @@
   flex-direction: row;
   background-color: var(--color-bg);
   color: var(--color-text);
-  gap: 1.2vw;
 }
 
 .mainContent {
   display: flex;
   flex-direction: column;
+  width: auto;
+  padding: 1.2vw;
 }
 
 .horizontalWrapper {

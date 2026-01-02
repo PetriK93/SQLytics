@@ -6,40 +6,60 @@
   align-items: center;
   padding: 15px 0 15px 0;
   background-color: var(--color-container);
-  width: 18vw;
+  width: 20vw;
 }
 
-.verticalWrapper {
+.verticalWrapperLeft {
+  display: flex;
   flex-direction: column;
-  gap: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 20px;
+}
+
+.verticalWrapperLeft p {
+  margin: 0;
 }
 
 .icon {
-  width: 19px;
-  height: 19px;
+  width: 26px;
+  height: 26px;
   background: transparent;
 }
 
 .amount {
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 .description {
   color: var(--color-secondary-text);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
+.verticalWrapperRight {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 10px;
+}
+
+.verticalWrapperRight p {
+  margin: 0;
+}
+
 .donut {
-  width: 19px;
-  height: 19px;
+  width: 50px;
+  height: 50px;
   background: transparent;
 }
 
 .percentage {
   color: var(--color-secondary-text);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
+  text-align: center;
 }
