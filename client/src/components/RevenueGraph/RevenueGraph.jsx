@@ -1,5 +1,7 @@
 import styles from "./RevenueGraphStyles.module.css";
+import { useRef } from "react";
 import downloadIcon from "../../assets/download_green.png";
+import * as htmlToImage from "html-to-image";
 import {
   LineChart,
   Line,
@@ -27,50 +29,78 @@ function RevenueGraph({ description, amount }) {
     { product: "Mouse", finland: 578, eu: 468, us: 467, others: 753 },
   ];
 
+  const chartRef = useRef(null);
+
+  const downloadChart = () => {
+    htmlToImage.toPng(chartRef.current).then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = "revenue-chart.png";
+      link.href = dataUrl;
+      link.click();
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.horizontalWrapper}>
         <p className={styles.description}>{description}</p>
-        <img src={downloadIcon} className={styles.downloadIcon} />
+        <img
+          src={downloadIcon}
+          className={styles.downloadIcon}
+          onClick={downloadChart}
+        />
       </div>
-      <p className={styles.amount}>€{amount}</p>
+      <p className={styles.amount}>${amount}</p>
 
       {/* GRAPH IS DEFINED BELOW */}
-      <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={data} margin={{ top: 20 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="product"
-            dy={10}
-            style={{
-              fill: "var(--color-text)",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          />
-          <YAxis
-            domain={[100, 800]}
-            dx={-10}
-            dy={-5}
-            style={{
-              fill: "var(--color-text)",
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          />
-          <Tooltip />
-          <Legend
-            verticalAlign="bottom"
-            align="center"
-            wrapperStyle={{ top: 192 }}
-          />
-
-          <Line type="monotone" dataKey="finland" stroke="#1f77b4" />
-          <Line type="monotone" dataKey="eu" stroke="#ff7f0e" />
-          <Line type="monotone" dataKey="us" stroke="#2ca02c" />
-          <Line type="monotone" dataKey="others" stroke="#d62728" />
-        </LineChart>
-      </ResponsiveContainer>
+      <div ref={chartRef}>
+        <ResponsiveContainer width="100%" height={210}>
+          <LineChart data={data} margin={{ top: 20, bottom: 20 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="product"
+              dy={10}
+              style={{
+                fill: "var(--color-text)",
+                fontSize: "14px",
+                fontWeight: "bold",
+              }}
+            />
+            <YAxis
+              domain={[0, 1000]}
+              ticks={[0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]}
+              dx={-10}
+              dy={-5}
+              style={{
+                fill: "var(--color-text)",
+                fontSize: "14px",
+                fontWeight: "bold",
+              }}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "var(--color-bg)",
+                border: "1px solid var(--color-border)",
+                color: "var(--color-text)",
+              }}
+              labelStyle={{
+                color: "var(--color-text)",
+                fontWeight: "bold",
+              }}
+              cursor={{ stroke: "var(--color-border)", strokeWidth: 1 }}
+            />
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{ bottom: -3 }}
+            />
+            <Line type="monotone" dataKey="finland" stroke="#1f77b4" />
+            <Line type="monotone" dataKey="eu" stroke="#ff7f0e" />
+            <Line type="monotone" dataKey="us" stroke="#2ca02c" />
+            <Line type="monotone" dataKey="others" stroke="#d62728" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

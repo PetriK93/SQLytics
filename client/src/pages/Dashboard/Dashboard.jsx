@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage.jsx";
 import SummaryCard from "../../components/SummaryCard/SummaryCard.jsx";
 import RevenueGraph from "../../components/RevenueGraph/RevenueGraph.jsx";
+import RecentTransactions from "../../components/RecentTransactions/RecentTransactions.jsx";
 import donutIcon from "../../assets/donut_dark_mode.png";
 import emailsIcon from "../../assets/emails_dark_mode.png";
 import salesIcon from "../../assets/sales_dark_mode.png";
@@ -45,7 +46,10 @@ function Dashboard() {
             percentage="21%"
           />
         </div>
-        <RevenueGraph description="Revenue Generated" amount="45600.24" />
+        <div className={styles.horizontalWrapper}>
+          <RevenueGraph description="Revenue Generated" amount="45600.24" />
+          <RecentTransactions title="Recent Transactions" />
+        </div>
       </main>
     </div>
   );
