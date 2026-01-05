@@ -12,7 +12,7 @@
 .verticalWrapperLeft {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: -5px;
 }
 
 .mainText {
@@ -31,6 +31,7 @@
 .verticalWrapperRight {
   display: flex;
   flex-direction: column;
+  margin-top: -15px;
 }
 
 .reportButton {

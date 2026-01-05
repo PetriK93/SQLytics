@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 20px;
   background-color: var(--color-container);
-  width: 57vw;
+  width: 27.9vw;
   gap: 5px;
 }
 
@@ -28,10 +28,4 @@
   height: 25px;
   background: transparent;
   cursor: pointer;
-}
-
-.amount {
-  color: var(--color-secondary-text);
-  font-size: 1.5rem;
-  font-weight: bold;
 }

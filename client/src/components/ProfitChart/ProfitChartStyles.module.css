@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--color-container);
+  width: 27.9vw;
+  gap: 5px;
+}
+
+.container p {
+  margin: 0;
+}
+
+.title {
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+}
+
+.revenue {
+  color: var(--color-secondary-text);
+  font-size: 1.2rem;
+}
+
+.description {
+  color: var(--color-text);
+  font-size: 1rem;
+}

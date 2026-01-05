@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 25.5vw;
-  gap: 10px;
+  gap: 5px;
   max-height: 317px;
   overflow-y: auto;
 }
