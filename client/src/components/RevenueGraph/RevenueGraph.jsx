@@ -21,7 +21,7 @@ function RevenueGraph({ description, amount }) {
     { product: "RAM", finland: 500, eu: 150, us: 300, others: 170 },
     { product: "SSD", finland: 100, eu: 550, us: 200, others: 130 },
     { product: "HDD", finland: 800, eu: 650, us: 500, others: 260 },
-    { product: "Power Supply", finland: 150, eu: 278, us: 443, others: 126 },
+    { product: "PSU", finland: 150, eu: 278, us: 443, others: 126 },
     { product: "Cooling Fan", finland: 164, eu: 197, us: 158, others: 674 },
     { product: "Case", finland: 623, eu: 432, us: 221, others: 364 },
     { product: "Monitor", finland: 300, eu: 250, us: 400, others: 726 },

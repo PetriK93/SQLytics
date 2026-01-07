@@ -35,15 +35,15 @@ function Dashboard() {
           />
           <SummaryCard
             img={newClientsIcon}
-            number="34"
+            number="54"
             description="New Clients"
             donut={donutIcon}
             percentage="34%"
           />
           <SummaryCard
             img={trafficIcon}
-            number="130495.20"
-            description="Website Traffic"
+            number="12"
+            description="New Members"
             donut={donutIcon}
             percentage="21%"
           />
