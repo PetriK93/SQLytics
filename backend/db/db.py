@@ -5,6 +5,7 @@ import mysql.connector
 # Load .env
 load_dotenv()
 
+# Configure the database
 dbconfig = {
     "host": os.getenv("DB_HOST"),
     "user": os.getenv("DB_USER"),
@@ -20,5 +21,6 @@ pool = mysql.connector.pooling.MySQLConnectionPool(
     **dbconfig
 )
 
+# Connect to the database
 def get_connection():
     return pool.get_connection()

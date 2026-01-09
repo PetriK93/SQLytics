@@ -16,6 +16,3 @@ def add_product(name, price, tax_percentage, category, supplier_id, supplier_cut
                 print(f"Client added with ID: {cursor.lastrowid}")
     except Error as err:
         print(f"Error: {err}")
-        
-
-add_product("GeForce RTX 5070 Ti PRIME - OC Edition", 849.90, 25.00, "gpu", "fi123-456", 4, "on_sale", 15, "ASUS")
