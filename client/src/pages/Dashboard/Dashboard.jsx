@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { fetchUsers, fetchProducts, fetchRecentInvoices } from "../../api.js";
+import {
+  fetchUsers,
+  fetchProducts,
+  fetchTotalRevenue,
+  fetchRecentInvoices,
+} from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage.jsx";
@@ -17,7 +22,8 @@ import trafficIcon from "../../assets/traffic_dark_mode.png";
 function Dashboard() {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
-  const [invoices, setInvoices] = useState([]);
+  const [totalRevenue, setTotalRevenue] = useState([]);
+  const [recentInvoices, setRecentInvoices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,15 +31,18 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [usersData, productsData, invoicesData] = await Promise.all([
-          fetchUsers(),
-          fetchProducts(),
-          fetchRecentInvoices(),
-        ]);
+        const [usersData, productsData, totalRevenueData, recentInvoicesData] =
+          await Promise.all([
+            fetchUsers(),
+            fetchProducts(),
+            fetchTotalRevenue(),
+            fetchRecentInvoices(),
+          ]);
 
         setUsers(usersData);
         setProducts(productsData);
-        setInvoices(invoicesData);
+        setTotalRevenue(totalRevenueData);
+        setRecentInvoices(recentInvoicesData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -98,8 +107,11 @@ function Dashboard() {
           />
         </div>
         <div className={styles.horizontalWrapper}>
-          <RevenueGraph description="Revenue Generated" amount="45600.24" />
-          <RecentTransactions title="Recent Transactions" invoices={invoices} />
+          <RevenueGraph description="Revenue Generated" amount={totalRevenue} />
+          <RecentTransactions
+            title="Recent Transactions"
+            invoices={recentInvoices}
+          />
         </div>
         <div className={styles.horizontalWrapper}>
           <ProfitChart

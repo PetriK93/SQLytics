@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import styles from "./RevenueGraphStyles.module.css";
+import { fetchSalesByLocation } from "../../api/api";
 import { useRef } from "react";
 import downloadIcon from "../../assets/download_green.png";
 import * as htmlToImage from "html-to-image";
@@ -28,6 +30,24 @@ function RevenueGraph({ description, amount }) {
     { product: "Keyboard", finland: 524, eu: 742, us: 267, others: 533 },
     { product: "Mouse", finland: 578, eu: 468, us: 467, others: 753 },
   ];
+
+  {
+    /* const [salesData, setSalesData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await fetchSalesLocation();
+        setSalesData(data);
+      } catch (err) {
+        console.error("Failed to fetch sales data:", err);
+      } finally {
+      }
+    };
+
+    getData();
+  }, []); */
+  }
 
   const chartRef = useRef(null);
 
