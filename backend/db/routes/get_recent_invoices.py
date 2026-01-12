@@ -16,9 +16,7 @@ def get_recent_invoices():
                         i.order_id AS id,
                         i.customer_id AS customerID,
                         u.name AS customerName,
-                        i.payment_method AS paymentMethod,
                         i.time_of_purchase AS date,
-                        i.quantity_of_items AS quantity,
                         i.total AS amount
                     FROM invoices i
                     JOIN user_information u ON i.customer_id = u.id
