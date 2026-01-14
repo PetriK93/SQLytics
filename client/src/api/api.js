@@ -30,8 +30,8 @@ export const fetchRecentInvoices = async () => {
   return data;
 };
 
-/* SALES BY LOCATION */
-export const fetchSalesByLocation = async () => {
-  const { data } = await api.get("/sales-by-location");
+/* SALES BY CATEGORY AND LOCATION */
+export const fetchSalesByCategoryAndLocation = async () => {
+  const { data } = await api.get("/sales-by-category-and-location");
   return data;
 };

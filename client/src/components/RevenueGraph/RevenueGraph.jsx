@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./RevenueGraphStyles.module.css";
-import { fetchSalesByLocation } from "../../api/api";
-import { useRef } from "react";
+import { fetchSalesByCategoryAndLocation } from "../../api/api";
 import downloadIcon from "../../assets/download_green.png";
 import * as htmlToImage from "html-to-image";
 import {
@@ -16,40 +15,54 @@ import {
 } from "recharts";
 
 function RevenueGraph({ description, amount }) {
-  const data = [
-    { product: "CPU", finland: 120, eu: 200, us: 180, others: 90 },
-    { product: "GPU", finland: 300, eu: 250, us: 400, others: 150 },
-    { product: "Motherboard", finland: 360, eu: 220, us: 410, others: 120 },
-    { product: "RAM", finland: 500, eu: 150, us: 300, others: 170 },
-    { product: "SSD", finland: 100, eu: 550, us: 200, others: 130 },
-    { product: "HDD", finland: 800, eu: 650, us: 500, others: 260 },
-    { product: "PSU", finland: 150, eu: 278, us: 443, others: 126 },
-    { product: "Cooling Fan", finland: 164, eu: 197, us: 158, others: 674 },
-    { product: "Case", finland: 623, eu: 432, us: 221, others: 364 },
-    { product: "Monitor", finland: 300, eu: 250, us: 400, others: 726 },
-    { product: "Keyboard", finland: 524, eu: 742, us: 267, others: 533 },
-    { product: "Mouse", finland: 578, eu: 468, us: 467, others: 753 },
-  ];
-
-  {
-    /* const [salesData, setSalesData] = useState([]);
+  const [data, setData] = useState([]);
+  const chartRef = useRef(null);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await fetchSalesLocation();
-        setSalesData(data);
+        const fetchedData = await fetchSalesByCategoryAndLocation();
+        const categories = [
+          "cpu",
+          "gpu",
+          "motherboard",
+          "ram",
+          "ssd",
+          "hdd",
+          "psu",
+          "cooling_fan",
+          "_case",
+          "monitor",
+          "keyboard",
+          "mouse",
+        ];
+
+        const transformedData = categories.map((category) => {
+          const entry = {
+            product:
+              category === "_case"
+                ? "case"
+                : category === "cooling_fan"
+                ? "cooling Fan"
+                : category,
+          };
+
+          fetchedData.forEach((row) => {
+            const countryKey = row.country.toLowerCase();
+            entry[countryKey] = row[category] || 0;
+          });
+
+          return entry;
+        });
+
+        setData(transformedData);
       } catch (err) {
         console.error("Failed to fetch sales data:", err);
-      } finally {
       }
     };
 
     getData();
-  }, []); */
-  }
-
-  const chartRef = useRef(null);
+  }, []);
 
   const downloadChart = () => {
     htmlToImage.toPng(chartRef.current).then((dataUrl) => {
@@ -74,7 +87,7 @@ function RevenueGraph({ description, amount }) {
 
       {/* GRAPH IS DEFINED BELOW */}
       <div ref={chartRef}>
-        <ResponsiveContainer width="100%" height={210}>
+        <ResponsiveContainer width="100%" height={220}>
           <LineChart data={data} margin={{ top: 20, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -87,8 +100,8 @@ function RevenueGraph({ description, amount }) {
               }}
             />
             <YAxis
-              domain={[0, 1000]}
-              ticks={[0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]}
+              domain={[0, 1200]}
+              ticks={[0, 200, 400, 600, 800, 1000, 1200]}
               dx={-10}
               dy={-5}
               style={{

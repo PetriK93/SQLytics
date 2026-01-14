@@ -3,18 +3,17 @@ from mysql.connector import Error
 from db import get_connection
 
 # Create blueprint
-sales_by_location_bp = Blueprint("sales_by_location", __name__)
+sales_by_category_and_location_bp = Blueprint("sales_by_category_and_location", __name__)
 
 # Assign a route to the blueprint
-@sales_by_location_bp.route("/api/sales-by-location", methods=["GET"])
+@sales_by_category_and_location_bp.route("/api/sales-by-category-and-location", methods=["GET"])
 
-def sales_by_location():
+def sales_by_category_and_location():
     try:
         with get_connection() as connection:
             with connection.cursor(dictionary=True) as cursor:
                 query = """
-                
-
+                SELECT * FROM sales_by_category_and_location
                 """
                 cursor.execute(query)
                 rows = cursor.fetchall()

@@ -3,6 +3,7 @@ import {
   fetchUsers,
   fetchProducts,
   fetchTotalRevenue,
+  fetchInvoices,
   fetchRecentInvoices,
 } from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
@@ -23,6 +24,7 @@ function Dashboard() {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [totalRevenue, setTotalRevenue] = useState([]);
+  const [invoices, setInvoices] = useState([]);
   const [recentInvoices, setRecentInvoices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,17 +33,24 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [usersData, productsData, totalRevenueData, recentInvoicesData] =
-          await Promise.all([
-            fetchUsers(),
-            fetchProducts(),
-            fetchTotalRevenue(),
-            fetchRecentInvoices(),
-          ]);
+        const [
+          usersData,
+          productsData,
+          totalRevenueData,
+          invoicesData,
+          recentInvoicesData,
+        ] = await Promise.all([
+          fetchUsers(),
+          fetchProducts(),
+          fetchTotalRevenue(),
+          fetchInvoices(),
+          fetchRecentInvoices(),
+        ]);
 
         setUsers(usersData);
         setProducts(productsData);
         setTotalRevenue(totalRevenueData);
+        setInvoices(invoicesData);
         setRecentInvoices(recentInvoicesData);
         setLoading(false);
       } catch (err) {
@@ -62,8 +71,8 @@ function Dashboard() {
     0
   );
 
-  const totalSales = users.reduce(
-    (sum, user) => sum + (user.total_purchases || 0),
+  const totalSales = invoices.reduce(
+    (sum, invoice) => sum + (invoice.total_quantity || 0),
     0
   );
 
