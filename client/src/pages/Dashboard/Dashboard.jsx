@@ -65,20 +65,53 @@ function Dashboard() {
   if (loading) return <p>Loading dashboard...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  /* Dashboard reports */
+  /* EMAILS SENT */
   const totalEmailsSent = users.reduce(
     (sum, user) => sum + (user.sent_email_count || 0),
     0
   );
 
+  /* TOTAL SALES */
   const totalSales = invoices.reduce(
     (sum, invoice) => sum + (invoice.total_quantity || 0),
     0
   );
 
+  /* NEW USERS */
+  const cutoff = new Date("2025-12-31");
+  const users2025 = users.filter((user) => new Date(user.created_at) <= cutoff);
+  const users2026 = users.filter((user) => new Date(user.created_at) > cutoff);
+  const total2025 = users2025.length;
+  const total2026 = users2026.length;
+
+  const newUserPercentage =
+    total2025 + total2026 === 0
+      ? 0
+      : Math.round((total2026 / (total2025 + total2026)) * 100);
+
+  const oldUserPercentage = 100 - newUserPercentage;
+
+  const newUsersData = [
+    { name: "new-users", value: newUserPercentage },
+    { name: "old-users", value: oldUserPercentage },
+  ];
+
+  /* ACTIVE MEMBERS */
+  const totalUsers = users.length;
+
   const totalMembers = users.filter(
     (user) => user.membership_level === "member"
   ).length;
+
+  const memberPercentage =
+    totalUsers === 0 ? 0 : Math.round((totalMembers / totalUsers) * 100);
+
+  const nonMemberPercentage = 100 - memberPercentage;
+
+  const activeMembersData = [
+    { name: "Members", value: memberPercentage },
+    { name: "Non-members", value: nonMemberPercentage },
+  ];
 
   return (
     <div className={styles.container}>
@@ -102,17 +135,15 @@ function Dashboard() {
           />
           <SummaryCard
             img={newClientsIcon}
-            number={users.length}
-            description="New Users"
-            donut={donutIcon}
-            percentage="34%"
+            number={users2026.length}
+            description="New Users %"
+            data={newUsersData}
           />
           <SummaryCard
             img={trafficIcon}
             number={totalMembers}
-            description="New Members"
-            donut={donutIcon}
-            percentage="21%"
+            description="Active Members %"
+            data={activeMembersData}
           />
         </div>
         <div className={styles.horizontalWrapper}>
