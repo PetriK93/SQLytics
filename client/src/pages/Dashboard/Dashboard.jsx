@@ -5,6 +5,7 @@ import {
   fetchTotalRevenue,
   fetchInvoices,
   fetchRecentInvoices,
+  fetchSalesByPaymentMethod,
 } from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
@@ -23,13 +24,14 @@ import trafficIcon from "../../assets/traffic_dark_mode.png";
 function Dashboard() {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
+  const [paymentMethods, setPaymentMethods] = useState([]);
   const [totalRevenue, setTotalRevenue] = useState([]);
   const [invoices, setInvoices] = useState([]);
   const [recentInvoices, setRecentInvoices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /* Fetch latest user, product and invoice data */
+  /* FETCH RELEVANT DATA */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,12 +41,14 @@ function Dashboard() {
           totalRevenueData,
           invoicesData,
           recentInvoicesData,
+          paymentMethodsData,
         ] = await Promise.all([
           fetchUsers(),
           fetchProducts(),
           fetchTotalRevenue(),
           fetchInvoices(),
           fetchRecentInvoices(),
+          fetchSalesByPaymentMethod(),
         ]);
 
         setUsers(usersData);
@@ -52,6 +56,7 @@ function Dashboard() {
         setTotalRevenue(totalRevenueData);
         setInvoices(invoicesData);
         setRecentInvoices(recentInvoicesData);
+        setPaymentMethods(paymentMethodsData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -96,7 +101,7 @@ function Dashboard() {
     { name: "old-users", value: oldUserPercentage },
   ];
 
-  /* ACTIVE MEMBERS */
+  /* CURRENTLY ACTIVE MEMBERS */
   const totalUsers = users.length;
 
   const totalMembers = users.filter(
@@ -122,27 +127,26 @@ function Dashboard() {
           <SummaryCard
             img={emailsIcon}
             number={totalEmailsSent}
-            description="Emails Sent"
+            description="Emails By Type %"
             donut={donutIcon}
             percentage="14%"
           />
           <SummaryCard
             img={salesIcon}
             number={totalSales}
-            description="Sales"
-            donut={donutIcon}
-            percentage="12%"
+            description="Sales By Payment Method %"
+            data={paymentMethods}
           />
           <SummaryCard
             img={newClientsIcon}
             number={users2026.length}
-            description="New Users %"
+            description="New Users % (Compared to last year)"
             data={newUsersData}
           />
           <SummaryCard
             img={trafficIcon}
             number={totalMembers}
-            description="Active Members %"
+            description="Currently Active Members %"
             data={activeMembersData}
           />
         </div>

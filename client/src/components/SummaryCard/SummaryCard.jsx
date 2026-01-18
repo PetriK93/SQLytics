@@ -1,8 +1,8 @@
 import styles from "./SummaryCardStyles.module.css";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
 function SummaryCard({ img, number, description, data = [] }) {
-  const COLORS = ["#4CAF50", "#f44336"];
+  const COLORS = ["#4CAF50", "#f44336", "#2196F3", "#FFC107", "#9407ff"];
 
   return (
     <div className={styles.container}>

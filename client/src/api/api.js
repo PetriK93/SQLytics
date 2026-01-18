@@ -35,3 +35,9 @@ export const fetchSalesByCategoryAndLocation = async () => {
   const { data } = await api.get("/sales-by-category-and-location");
   return data;
 };
+
+/* SALES BY PAYMENT METHOD */
+export const fetchSalesByPaymentMethod = async () => {
+  const { data } = await api.get("/sales-by-payment-method");
+  return data;
+};
