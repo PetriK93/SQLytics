@@ -41,3 +41,9 @@ export const fetchSalesByPaymentMethod = async () => {
   const { data } = await api.get("/sales-by-payment-method");
   return data;
 };
+
+/* EMAILS BY TYPE */
+export const fetchEmailsByType = async () => {
+  const { data } = await api.get("/emails-by-type");
+  return data;
+};

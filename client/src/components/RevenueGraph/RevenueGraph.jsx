@@ -18,6 +18,13 @@ function RevenueGraph({ description, amount }) {
   const [data, setData] = useState([]);
   const chartRef = useRef(null);
 
+  const countryLabels = {
+    finland: "Finland",
+    eu: "EU",
+    us: "US",
+    others: "Others",
+  };
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -127,10 +134,30 @@ function RevenueGraph({ description, amount }) {
               align="center"
               wrapperStyle={{ bottom: -3 }}
             />
-            <Line type="monotone" dataKey="finland" stroke="#1f77b4" />
-            <Line type="monotone" dataKey="eu" stroke="#ff7f0e" />
-            <Line type="monotone" dataKey="us" stroke="#2ca02c" />
-            <Line type="monotone" dataKey="others" stroke="#d62728" />
+            <Line
+              type="monotone"
+              dataKey="finland"
+              name={countryLabels.finland}
+              stroke="#1f77b4"
+            />
+            <Line
+              type="monotone"
+              dataKey="eu"
+              name={countryLabels.eu}
+              stroke="#ff7f0e"
+            />
+            <Line
+              type="monotone"
+              dataKey="us"
+              name={countryLabels.us}
+              stroke="#2ca02c"
+            />
+            <Line
+              type="monotone"
+              dataKey="others"
+              name={countryLabels.others}
+              stroke="#d62728"
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -25,13 +25,25 @@ def sales_by_payment_method():
                 
                 total_items = sum(row["total_items_sold"] for row in rows)
                 
-                result = [
-                {
-                    "name": row["payment_method"],
-                    "value": round((row["total_items_sold"] / total_items) * 100)
+                payment_method_names = {
+                    "bank_transfer": "Bank transfer",
+                    "bnpl": "Buy now, pay later",
+                    "mobile_wallet": "Mobile wallet",
+                    "card": "Credit card",
+                    "paypal": "PayPal"
                 }
-                for row in rows
-            ]
+
+                result = [
+                    {
+                        "name": payment_method_names.get(
+                            row["payment_method"],
+                            row["payment_method"]
+                        ),
+                        "value": round((row["total_items_sold"] / total_items) * 100)
+                    }
+                    for row in rows
+                ]
+
                 return jsonify(result), 200
 
     except Error as err:

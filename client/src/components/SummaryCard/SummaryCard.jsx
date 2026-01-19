@@ -12,13 +12,13 @@ function SummaryCard({ img, number, description, data = [] }) {
         <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.verticalWrapperRight}>
-        <ResponsiveContainer width={170} height={170}>
+        <ResponsiveContainer width={170} height={240}>
           <PieChart>
             <Pie
               data={data}
               dataKey="value"
-              innerRadius={30}
-              outerRadius={45}
+              innerRadius={15}
+              outerRadius={35}
               paddingAngle={0}
               label
             >
@@ -29,6 +29,7 @@ function SummaryCard({ img, number, description, data = [] }) {
                 />
               ))}
             </Pie>
+            <Legend layout="vertical" verticalAlign="bottom" align="center" />
           </PieChart>
         </ResponsiveContainer>
       </div>

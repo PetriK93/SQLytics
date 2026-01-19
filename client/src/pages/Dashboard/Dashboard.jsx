@@ -6,6 +6,7 @@ import {
   fetchInvoices,
   fetchRecentInvoices,
   fetchSalesByPaymentMethod,
+  fetchEmailsByType,
 } from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
@@ -25,6 +26,7 @@ function Dashboard() {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [paymentMethods, setPaymentMethods] = useState([]);
+  const [emailTypes, setEmailTypes] = useState([]);
   const [totalRevenue, setTotalRevenue] = useState([]);
   const [invoices, setInvoices] = useState([]);
   const [recentInvoices, setRecentInvoices] = useState([]);
@@ -42,6 +44,7 @@ function Dashboard() {
           invoicesData,
           recentInvoicesData,
           paymentMethodsData,
+          emailTypesData,
         ] = await Promise.all([
           fetchUsers(),
           fetchProducts(),
@@ -49,6 +52,7 @@ function Dashboard() {
           fetchInvoices(),
           fetchRecentInvoices(),
           fetchSalesByPaymentMethod(),
+          fetchEmailsByType(),
         ]);
 
         setUsers(usersData);
@@ -57,6 +61,7 @@ function Dashboard() {
         setInvoices(invoicesData);
         setRecentInvoices(recentInvoicesData);
         setPaymentMethods(paymentMethodsData);
+        setEmailTypes(emailTypesData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -97,8 +102,8 @@ function Dashboard() {
   const oldUserPercentage = 100 - newUserPercentage;
 
   const newUsersData = [
-    { name: "new-users", value: newUserPercentage },
-    { name: "old-users", value: oldUserPercentage },
+    { name: "New users", value: newUserPercentage },
+    { name: "Old users", value: oldUserPercentage },
   ];
 
   /* CURRENTLY ACTIVE MEMBERS */
@@ -128,8 +133,7 @@ function Dashboard() {
             img={emailsIcon}
             number={totalEmailsSent}
             description="Emails By Type %"
-            donut={donutIcon}
-            percentage="14%"
+            data={emailTypes}
           />
           <SummaryCard
             img={salesIcon}
