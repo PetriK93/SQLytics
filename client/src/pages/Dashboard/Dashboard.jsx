@@ -75,19 +75,19 @@ function Dashboard() {
   if (loading) return <p>Loading dashboard...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  /* EMAILS SENT */
+  /* EMAILS BY TYPE CARD */
   const totalEmailsSent = users.reduce(
     (sum, user) => sum + (user.sent_email_count || 0),
     0
   );
 
-  /* TOTAL SALES */
+  /* SALES BY PAYMENT METHOD CARD */
   const totalSales = invoices.reduce(
     (sum, invoice) => sum + (invoice.total_quantity || 0),
     0
   );
 
-  /* NEW USERS */
+  /* NEW USERS CARD */
   const cutoff = new Date("2025-12-31");
   const users2025 = users.filter((user) => new Date(user.created_at) <= cutoff);
   const users2026 = users.filter((user) => new Date(user.created_at) > cutoff);
@@ -106,7 +106,7 @@ function Dashboard() {
     { name: "Old users", value: oldUserPercentage },
   ];
 
-  /* CURRENTLY ACTIVE MEMBERS */
+  /* CURRENTLY ACTIVE MEMBERS CARD */
   const totalUsers = users.length;
 
   const totalMembers = users.filter(
@@ -133,29 +133,41 @@ function Dashboard() {
             img={emailsIcon}
             number={totalEmailsSent}
             description="Emails By Type %"
-            height={230}
+            height={250}
+            cy={80}
+            wrapper={17}
             data={emailTypes}
+            chartName="emails_by_type.png"
           />
           <SummaryCard
             img={salesIcon}
             number={totalSales}
             description="Sales By Payment Method %"
             height={250}
+            cy={80}
+            wrapper={0}
             data={paymentMethods}
+            chartName="sales_by_payment_method.png"
           />
           <SummaryCard
             img={newClientsIcon}
             number={users2026.length}
             description="New Users % (Compared to last year)"
-            height={200}
+            height={250}
+            cy={80}
+            wrapper={55}
             data={newUsersData}
+            chartName="new_users.png"
           />
           <SummaryCard
             img={trafficIcon}
             number={totalMembers}
             description="Currently Active Members %"
-            height={200}
+            height={250}
+            cy={80}
+            wrapper={55}
             data={activeMembersData}
+            chartName="currently_active_members.png"
           />
         </div>
         <div className={styles.horizontalWrapper}>

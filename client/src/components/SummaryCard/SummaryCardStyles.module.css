@@ -1,11 +1,29 @@
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
   padding: 20px;
   background-color: var(--color-container);
   width: 20vw;
+}
+
+.topRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.downloadIcon {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .verticalWrapperLeft {
