@@ -133,24 +133,28 @@ function Dashboard() {
             img={emailsIcon}
             number={totalEmailsSent}
             description="Emails By Type %"
+            height={230}
             data={emailTypes}
           />
           <SummaryCard
             img={salesIcon}
             number={totalSales}
             description="Sales By Payment Method %"
+            height={250}
             data={paymentMethods}
           />
           <SummaryCard
             img={newClientsIcon}
             number={users2026.length}
             description="New Users % (Compared to last year)"
+            height={200}
             data={newUsersData}
           />
           <SummaryCard
             img={trafficIcon}
             number={totalMembers}
             description="Currently Active Members %"
+            height={200}
             data={activeMembersData}
           />
         </div>

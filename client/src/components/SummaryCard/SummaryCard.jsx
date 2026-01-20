@@ -1,7 +1,7 @@
 import styles from "./SummaryCardStyles.module.css";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-function SummaryCard({ img, number, description, data = [] }) {
+function SummaryCard({ img, number, description, data = [], height }) {
   const COLORS = ["#4CAF50", "#f44336", "#2196F3", "#FFC107", "#9407ff"];
 
   return (
@@ -12,7 +12,7 @@ function SummaryCard({ img, number, description, data = [] }) {
         <p className={styles.description}>{description}</p>
       </div>
       <div className={styles.verticalWrapperRight}>
-        <ResponsiveContainer width={170} height={240}>
+        <ResponsiveContainer width={160} height={height}>
           <PieChart>
             <Pie
               data={data}
