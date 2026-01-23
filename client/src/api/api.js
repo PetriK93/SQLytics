@@ -47,3 +47,9 @@ export const fetchEmailsByType = async () => {
   const { data } = await api.get("/emails-by-type");
   return data;
 };
+
+/* REVENUE VS EXPENSES */
+export const fetchRevenueVsExpenses = async () => {
+  const { data } = await api.get("/revenue-vs-expenses");
+  return data;
+};

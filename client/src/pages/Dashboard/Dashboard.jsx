@@ -7,6 +7,7 @@ import {
   fetchRecentInvoices,
   fetchSalesByPaymentMethod,
   fetchEmailsByType,
+  fetchRevenueVsExpenses,
 } from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
@@ -16,7 +17,6 @@ import RevenueGraph from "../../components/RevenueGraph/RevenueGraph.jsx";
 import RecentTransactions from "../../components/RecentTransactions/RecentTransactions.jsx";
 import ProfitChart from "../../components/ProfitChart/ProfitChart.jsx";
 import RevenueVsCostChart from "../../components/RevenueVsCostChart/RevenueVsCostChart.jsx";
-import donutIcon from "../../assets/donut_dark_mode.png";
 import emailsIcon from "../../assets/emails_dark_mode.png";
 import salesIcon from "../../assets/sales_dark_mode.png";
 import newClientsIcon from "../../assets/new_clients_dark_mode.png";
@@ -30,6 +30,7 @@ function Dashboard() {
   const [totalRevenue, setTotalRevenue] = useState([]);
   const [invoices, setInvoices] = useState([]);
   const [recentInvoices, setRecentInvoices] = useState([]);
+  const [revenueVsExpenses, setRevenueVsExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -45,6 +46,7 @@ function Dashboard() {
           recentInvoicesData,
           paymentMethodsData,
           emailTypesData,
+          revenueVsExpensesData,
         ] = await Promise.all([
           fetchUsers(),
           fetchProducts(),
@@ -53,6 +55,7 @@ function Dashboard() {
           fetchRecentInvoices(),
           fetchSalesByPaymentMethod(),
           fetchEmailsByType(),
+          fetchRevenueVsExpenses(),
         ]);
 
         setUsers(usersData);
@@ -62,6 +65,7 @@ function Dashboard() {
         setRecentInvoices(recentInvoicesData);
         setPaymentMethods(paymentMethodsData);
         setEmailTypes(emailTypesData);
+        setRevenueVsExpenses(revenueVsExpensesData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -123,6 +127,9 @@ function Dashboard() {
     { name: "Non-members", value: nonMemberPercentage },
   ];
 
+  /* NET PROFIT */
+  const netProfit = revenueVsExpenses[0].value;
+
   return (
     <div className={styles.container}>
       <Sidebar />
@@ -179,10 +186,15 @@ function Dashboard() {
         </div>
         <div className={styles.horizontalWrapper}>
           <ProfitChart
-            title="Total Profit"
-            amount="34584.40"
+            title="Total Net Profit"
+            amount={netProfit}
             text="Net Profit"
             description="Includes all profits and expenses"
+            width={500}
+            height={200}
+            wrapper={0}
+            cy={80}
+            data={revenueVsExpenses}
           />
           <RevenueVsCostChart description="Revenue & Expenses" />
         </div>

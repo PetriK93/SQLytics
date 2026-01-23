@@ -8,6 +8,7 @@ from routes.total_revenue import total_revenue_bp
 from routes.sales_by_category_and_location import sales_by_category_and_location_bp
 from routes.sales_by_payment_method import sales_by_payment_method_bp
 from routes.emails_by_type import emails_by_type_bp
+from routes.revenue_vs_expenses import revenue_vs_expenses_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +22,7 @@ app.register_blueprint(total_revenue_bp)
 app.register_blueprint(sales_by_category_and_location_bp)
 app.register_blueprint(sales_by_payment_method_bp)
 app.register_blueprint(emails_by_type_bp)
+app.register_blueprint(revenue_vs_expenses_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)

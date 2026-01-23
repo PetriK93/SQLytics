@@ -53,7 +53,7 @@ function RevenueVsCostChart({ description }) {
 
       {/* GRAPH IS DEFINED BELOW */}
       <div ref={chartRef}>
-        <ResponsiveContainer width="100%" height={210}>
+        <ResponsiveContainer width="100%" height={270}>
           <BarChart
             data={revenueVsExpenses}
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}

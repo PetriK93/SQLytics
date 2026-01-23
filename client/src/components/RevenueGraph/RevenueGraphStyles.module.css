@@ -4,6 +4,7 @@
   padding: 20px;
   background-color: var(--color-container);
   width: 57vw;
+  max-height: 330px;
   gap: 5px;
 }
 
