@@ -201,7 +201,7 @@ function Dashboard() {
             amount={netProfit}
             text="Net Profit"
             description="Includes all profits and expenses"
-            width={500}
+            width={300}
             height={200}
             wrapper={0}
             cy={80}
