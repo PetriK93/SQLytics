@@ -68,6 +68,7 @@ py app.py
 6. Run the frontend:
 
 ```
+cd client
 npm run dev
 ```
 
