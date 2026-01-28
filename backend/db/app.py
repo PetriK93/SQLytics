@@ -9,6 +9,8 @@ from routes.sales_by_category_and_location import sales_by_category_and_location
 from routes.sales_by_payment_method import sales_by_payment_method_bp
 from routes.emails_by_type import emails_by_type_bp
 from routes.revenue_vs_expenses import revenue_vs_expenses_bp
+from routes.monthly_revenue_vs_expenses import monthly_revenue_vs_expenses_bp
+from routes.net_profit_per_region import net_profit_per_region_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -23,6 +25,8 @@ app.register_blueprint(sales_by_category_and_location_bp)
 app.register_blueprint(sales_by_payment_method_bp)
 app.register_blueprint(emails_by_type_bp)
 app.register_blueprint(revenue_vs_expenses_bp)
+app.register_blueprint(monthly_revenue_vs_expenses_bp)
+app.register_blueprint(net_profit_per_region_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -14,6 +14,7 @@ function ProfitChart({
   width,
   data = [],
   wrapper,
+  chartName,
 }) {
   const COLORS = ["#4CAF50", "#f44336"];
   const chartRef = useRef(null);

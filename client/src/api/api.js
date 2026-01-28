@@ -53,3 +53,15 @@ export const fetchRevenueVsExpenses = async () => {
   const { data } = await api.get("/revenue-vs-expenses");
   return data;
 };
+
+/* MONTHLY REVENUE VS EXPENSES */
+export const fetchMonthlyRevenueVsExpenses = async () => {
+  const { data } = await api.get("/monthly-revenue-vs-expenses");
+  return data;
+};
+
+/* NET PROFIT PER REGION */
+export const fetchNetProfitPerRegion = async () => {
+  const { data } = await api.get("/net-profit-per-region");
+  return data;
+};

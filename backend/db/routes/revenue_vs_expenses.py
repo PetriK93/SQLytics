@@ -21,7 +21,7 @@ def revenue_vs_expenses():
                 total_expenses = float(row.get("total_expenses", 0))
 
                 return jsonify([
-                {"name": "Net Profit", "value": total_net_profit},
+                {"name": "Net profit", "value": total_net_profit},
                 {"name": "Expenses", "value": total_expenses}
             ]), 200
 

@@ -8,6 +8,8 @@ import {
   fetchSalesByPaymentMethod,
   fetchEmailsByType,
   fetchRevenueVsExpenses,
+  fetchMonthlyRevenueVsExpenses,
+  fetchNetProfitPerRegion,
 } from "../../api/api.js";
 import styles from "./DashboardStyles.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
@@ -17,6 +19,7 @@ import RevenueGraph from "../../components/RevenueGraph/RevenueGraph.jsx";
 import RecentTransactions from "../../components/RecentTransactions/RecentTransactions.jsx";
 import ProfitChart from "../../components/ProfitChart/ProfitChart.jsx";
 import RevenueVsCostChart from "../../components/RevenueVsCostChart/RevenueVsCostChart.jsx";
+import NetProfitPerRegion from "../../components/NetProfitPerRegion/NetProfitPerRegion.jsx";
 import emailsIcon from "../../assets/emails_dark_mode.png";
 import salesIcon from "../../assets/sales_dark_mode.png";
 import newClientsIcon from "../../assets/new_clients_dark_mode.png";
@@ -31,6 +34,8 @@ function Dashboard() {
   const [invoices, setInvoices] = useState([]);
   const [recentInvoices, setRecentInvoices] = useState([]);
   const [revenueVsExpenses, setRevenueVsExpenses] = useState([]);
+  const [monthlyRevenueVsExpenses, setMonthlyRevenueVsExpenses] = useState([]);
+  const [netProfitPerRegion, setNetProfitPerRegion] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -47,6 +52,8 @@ function Dashboard() {
           paymentMethodsData,
           emailTypesData,
           revenueVsExpensesData,
+          monthlyRevenueVsExpensesData,
+          netProfitPerRegionData,
         ] = await Promise.all([
           fetchUsers(),
           fetchProducts(),
@@ -56,6 +63,8 @@ function Dashboard() {
           fetchSalesByPaymentMethod(),
           fetchEmailsByType(),
           fetchRevenueVsExpenses(),
+          fetchMonthlyRevenueVsExpenses(),
+          fetchNetProfitPerRegion(),
         ]);
 
         setUsers(usersData);
@@ -66,6 +75,8 @@ function Dashboard() {
         setPaymentMethods(paymentMethodsData);
         setEmailTypes(emailTypesData);
         setRevenueVsExpenses(revenueVsExpensesData);
+        setMonthlyRevenueVsExpenses(monthlyRevenueVsExpensesData);
+        setNetProfitPerRegion(netProfitPerRegionData);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -195,8 +206,16 @@ function Dashboard() {
             wrapper={0}
             cy={80}
             data={revenueVsExpenses}
+            chartName="total_net_profit.png"
           />
-          <RevenueVsCostChart description="Revenue & Expenses" />
+          <RevenueVsCostChart
+            description="Monthly Revenue & Expenses"
+            data={monthlyRevenueVsExpenses}
+          />
+          <NetProfitPerRegion
+            description="Regional Net Profit"
+            data={netProfitPerRegion}
+          />
         </div>
       </main>
     </div>

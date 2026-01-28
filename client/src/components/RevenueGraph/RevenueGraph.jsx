@@ -50,7 +50,7 @@ function RevenueGraph({ description, amount }) {
               category === "_case"
                 ? "case"
                 : category === "cooling_fan"
-                ? "cooling Fan"
+                ? "cooling fan"
                 : category,
           };
 

@@ -3,8 +3,8 @@
   flex-direction: column;
   padding: 20px;
   background-color: var(--color-container);
-  width: 27.9vw;
-  gap: 0px;
+  width: 25.1vw;
+  gap: 5px;
 }
 
 .container p {
@@ -15,35 +15,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.title {
-  font-size: 1.1rem;
-  color: var(--color-text);
-}
-
-.icon {
-  width: 25px;
-  height: 25px;
-  background: transparent;
-  cursor: pointer;
-}
-
-.innerContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.revenue {
-  color: var(--color-secondary-text);
-  font-size: 1.2rem;
 }
 
 .description {
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+.downloadIcon {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  cursor: pointer;
 }

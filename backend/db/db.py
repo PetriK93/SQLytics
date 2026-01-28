@@ -17,7 +17,7 @@ dbconfig = {
 # Create a connection pool
 pool = mysql.connector.pooling.MySQLConnectionPool(
     pool_name="mypool",
-    pool_size=10,
+    pool_size=15,
     **dbconfig
 )
 
