@@ -87,6 +87,37 @@ function Dashboard() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (loading) return;
+
+    console.group("📊 Dashboard Data Debug");
+
+    console.log("Users:", users);
+    console.log("Products:", products);
+    console.log("Total Revenue:", totalRevenue);
+    console.log("Invoices:", invoices);
+    console.log("Recent Invoices:", recentInvoices);
+    console.log("Payment Methods:", paymentMethods);
+    console.log("Email Types:", emailTypes);
+    console.log("Revenue vs Expenses:", revenueVsExpenses);
+    console.log("Monthly Revenue vs Expenses:", monthlyRevenueVsExpenses);
+    console.log("Net Profit Per Region:", netProfitPerRegion);
+
+    console.groupEnd();
+  }, [
+    loading,
+    users,
+    products,
+    totalRevenue,
+    invoices,
+    recentInvoices,
+    paymentMethods,
+    emailTypes,
+    revenueVsExpenses,
+    monthlyRevenueVsExpenses,
+    netProfitPerRegion,
+  ]);
+
   if (loading) return <p>Loading dashboard...</p>;
   if (error) return <p>Error: {error}</p>;
 
